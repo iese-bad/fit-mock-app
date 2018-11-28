@@ -1,0 +1,10 @@
+name: fitmock
+title:
+username:
+account: fitmockiesetest
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 536364
+bundleId: 1696076
+url: https://fitmockiesetest.shinyapps.io/fitmock/
+when: 1542029810.75797
