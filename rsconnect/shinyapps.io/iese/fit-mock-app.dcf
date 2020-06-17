@@ -1,0 +1,12 @@
+name: fit-mock-app
+title: fit-mock-app
+username:
+account: iese
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 1492660
+bundleId: 2778886
+url: https://iese.shinyapps.io/fit-mock-app/
+when: 1580978602.21123
+asMultiple: FALSE
+asStatic: FALSE

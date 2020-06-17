@@ -16,11 +16,17 @@ library(mailR)
 library(plotly)
 library(ggplot2)
 library(highcharter)
+library(googledrive)
 source("global.R")
 
 
 #### google authentification token...
-gs_auth(token = "www/googlesheets_token.rds")
+#gm_auth_configure(path = "www/FitMockProject.json")
+#gtoken<-gs_auth(new_user = TRUE, cache = FALSE)
+#saveRDS(gtoken,"www/gtoken30Oct.rds")
+gs_auth(token = "www/gtoken30Oct.rds")
+
+
 
 #### -----------------------------------------------------------------------------
 #### ----- LOADING STATIC DATA
@@ -32,8 +38,8 @@ gs_auth(token = "www/googlesheets_token.rds")
 #### To get a key> go to the sheet and get the share link, then 
 #### do> googlesheets::gs_url("url...")
 #### that will give you a key to use... 
-key_interviewers <- "1-cYHrbvRYzql-HNRxtR5aFRXVg8Bo5jKj1HySTsoXos"
-key_results <- "1vXJTkADKI29sHtfhsre9PTItOqQlW9Sim09zeelL5WM"
+key_interviewers <- "1fcz_yJBUiHMGsnibUjCHsfbmUF8M6vF5TeDounbIAAU"
+key_results <- "13wYFf2y5r5G5NO4UcdVpvVpT24grYkcjeS0o5bh2MJM"
 
 button_choices <- c("Overall Structure",
                     "Situation description", 
@@ -97,33 +103,122 @@ shinyServer(function(input, output) {
     
     # People were pressing twice because of the lag between pressing and sending email, 
     # so I added this BEFORE the email to keep them waiting...
+    Interview_Questions_vector<-c(input$Tell_Me,input$Strength,input$Weakness,input$CBI,input$Why_Company)
+    if(sum(Interview_Questions_vector)==0){
+      showNotification("Please select the type of interview") 
+    }
+    else{
     withProgress(message = 'Sending email ... ',{
       
       
-   button_vector <- button_choices %in% c(unlist(input$improvements))
-   results_vector <- c(as.character(Sys.time()), input$interviewee,input$interviewer,
-                       input$type_interviewer, 
-                       input$Structure, input$Impact,
-                       input$Succent, input$communication, 
-                       button_vector, input$other)
-   
-    # adding a new row here using the googlesheets
-    googlesheets::gs_add_row(gs_key(key_results, 
-                                    lookup = FALSE, 
-                                    visibility = "private"), 
-                             ws = "Results", 
-                             input = results_vector)
-    
+#   button_vector <- button_choices %in% c(unlist(input$improvements))
+      general_data_vector <- c(as.character(Sys.time()),input$interviewee,input$interviewer, input$type_interviewer)
+      Tell_me_vector <-c(input$Straight,input$New,input$Energy,input$TellMeInput)
+      Strength_vector <-c(input$StrengthVivid,input$StrengthClear,input$StrengthInput)
+      Weakness_vector <-c(input$WeaknessVivid,input$WeaknessClear,input$WeaknessInput)
+      CBI_vector <-c(input$STAR,input$impact,input$succinct,input$CBIInput)
+      why_vector<-c(input$Specific,input$Robust,input$ToThePoint,input$WhyInput)
+      general_attitude_vector <-c(input$Posture, input$Pause, input$BodyLang,input$AttitudeInput)
+      
+      
+      
+      
+      #             adding a new row here using the googlesheets
+      categories_vector <- c("Time","Interviewer","Interviewee", "Type of Interviewer") #This line is used in conjunction with the results_vector for e-mail purpose
+      results_vector <- c(general_data_vector) #This helps to compile the information to be send via e-mail
+      #The If-Statement helps to input the data at its respective tab(s)            
+      if(input$Tell_Me ==TRUE){
+        data_to_write <- as.data.frame(t(c(general_data_vector,Tell_me_vector)))
+        results_vector <- c(results_vector,Tell_me_vector)
+        categories_vector <- c(categories_vector, "<strong> Tell Me About Yourself </strong></br>Straight to the Point", "Something New", "Energy","Tell Me About Yourself Input")
+        googlesheets::gs_add_row(gs_key(key_results, 
+                                        lookup = FALSE, 
+                                        visibility = "private"), 
+                                 ws = "Tell_Me", 
+                                 input = data_to_write
+        )}
+      if(input$Strength==TRUE){
+        data_to_write <- as.data.frame(t(c(general_data_vector,Strength_vector)))
+        results_vector <- c(results_vector,Strength_vector)
+        categories_vector <-c (categories_vector, "<strong> Strength Questions </strong></br>Strength - Vivid Example",
+                               "Strength - Clear Conclusion", "Strength Input")
+        googlesheets::gs_add_row(gs_key(key_results,
+                                        lookup = FALSE,
+                                        visibility = "private"),
+                                 ws = "Strength",
+                                 input = data_to_write
+        )}
+      if(input$Weakness==TRUE){
+        data_to_write <- as.data.frame(t(c(general_data_vector,Weakness_vector)))
+        results_vector <- c(results_vector,Weakness_vector)
+        categories_vector <-c (categories_vector, "<strong> Weakness Questions </strong></br>Weakness - Vivid Example",
+                               "Weakness - Clear Conclusion", "Weakness Input")
+        googlesheets::gs_add_row(gs_key(key_results,
+                                        lookup = FALSE,
+                                        visibility = "private"),
+                                 ws = "Weakness",
+                                 input = data_to_write
+        )}
+      if(input$CBI==TRUE){
+        data_to_write <- as.data.frame(t(c(general_data_vector,CBI_vector)))
+        results_vector <- c(results_vector,CBI_vector)
+        categories_vector <-c (categories_vector, "<strong> Competency Based Questions </strong></br>STAR",
+                               "Impact", "To the Point Storytelling", "CBI Input")
+        googlesheets::gs_add_row(gs_key(key_results,
+                                        lookup = FALSE,
+                                        visibility = "private"),
+                                 ws = "CBI",
+                                 input = data_to_write
+        )}
+      if(input$Why_Company==TRUE){
+        data_to_write <- as.data.frame(t(c(general_data_vector,why_vector)))
+        results_vector <- c(results_vector,why_vector)
+        categories_vector <-c (categories_vector, "<strong> Why Company Questions</strong></br>Sector Specific","Robustness","Succinct","Why Company Input")
+        googlesheets::gs_add_row(gs_key(key_results,
+                                        lookup = FALSE,
+                                        visibility = "private"),
+                                 ws = "Why_Company",
+                                 input = data_to_write
+        )}
+      #if-statements end here
+      googlesheets::gs_add_row(gs_key(key_results, 
+                                      lookup = FALSE, 
+                                      visibility = "private"), 
+                               ws = "General_attitude", 
+                               input = as.data.frame(t(c(general_data_vector,general_attitude_vector))))
+      results_vector <- c(results_vector,general_attitude_vector)
+      categories_vector <-c(categories_vector, "<strong> General Attitude </strong></br>Posture", "Pause", 
+                  "Body Language", "Attitude and Presence input")
+      ####### GOOGLESHEETS OLD CODE ###########
+    #   
+    #      results_vector <- c(as.character(Sys.time()), input$interviewee,input$interviewer,
+    #                    input$type_interviewer, 
+    #                    input$Straight, input$New,
+    #                    input$Energy, input$TellMeInput ,input$vivid,
+    #                    input$clear, input$SnWInput, input$STAR,
+    #                    input$impact, input$succinct, input$CBIInput,
+    #                    input$Posture, input$Pause, input$BodyLang,
+    #                    input$AttitudeInput)
+    # 
+    # # adding a new row here using the googlesheets
+    # googlesheets::gs_add_row(gs_key(key_results, 
+    #                                 lookup = FALSE, 
+    #                                 visibility = "private"), 
+    #                          ws = "Results", 
+    #                          input = results_vector)
+    # 
     # sending the email (this function is stored in global.R)
     send_fit_mail(interviewer = as.character(input$interviewee), # sending to this guy
                          interviewee = as.character(input$interviewer), # also sending to this guy
-                         data_vector = results_vector)
+                         data_vector = results_vector,
+                         categories = categories_vector)
     })
+     }
   })
 
   
   # Success text (when the email is successfully sent, you get a nice success message)
-  ts <- eventReactive(input$submit, {"Sucess! Data stored and emails sent!"})
+#  ts <- eventReactive(input$submit, {"Sucess! Data stored sent!"})
   output$submitsucess <- renderText(ts())
   
   
@@ -131,40 +226,40 @@ shinyServer(function(input, output) {
   #### ------- OUTPUTS FOR THE COMPARISON CHARTS
   #### This is to compare results, on the second tab. 
   #### First, we start importing data when the second action button is clicked
-ch <- eventReactive(input$compare, {
-  gs_key(key_results, lookup = FALSE, visibility = "private") %>% 
-      gs_read(ws = "Results")
-    })
+# ch <- eventReactive(input$compare, {
+#   gs_key(key_results, lookup = FALSE, visibility = "private") %>% 
+#       gs_read(ws = "Results")
+#     })
   
-  ##### Second, we will render the highchart object
-  output$hc_comparison <- renderHighchart({
-    
-    # here are the results for this mock, taken from the inputs
-    real_results <- c(input$Structure, input$Impact,
-                      input$Succent, input$communication)
-    
-    # now, we are going to average out all the results for all the mocks.
-    # we "select" the columns we want, then summarise them all by mean (average)
-    results_df <- ch() %>% 
-      dplyr::select("Structure", "Impact", "Succent", 
-                    "Synthesis", "Communication") %>% 
-      dplyr::summarise_all(.funs = "mean")
-    
-    # now I transpose the data.frame, so that columns are rows (just makes it easier to manipulate).
-    results_df <- as.data.frame(t(results_df))
-    names(results_df) <- "score"
-    
-    # now, we build the highchart
-    highchart() %>% 
-      hc_chart(type = "column") %>% 
-      hc_add_series(data = results_df$score, 
-                    name = "Average", 
-                    color = "#9C2625") %>% 
-      hc_add_series(data = real_results, 
-                    name = "This Mock", 
-                    color = "#c35f33") %>%
-      hc_xAxis(categories = as.character(row.names(results_df))) %>%
-      hc_exporting(enabled = TRUE)
-  })
+  # ##### Second, we will render the highchart object
+  # output$hc_comparison <- renderHighchart({
+  #   
+  #   # here are the results for this mock, taken from the inputs
+  #   real_results <- c(input$Straight, input$New,
+  #                     input$Energy, input$communication)
+  #   
+  #   # now, we are going to average out all the results for all the mocks.
+  #   # we "select" the columns we want, then summarise them all by mean (average)
+  #   results_df <- ch() %>% 
+  #     dplyr::select("Structure", "Impact", "Succent", 
+  #                   "Synthesis", "Communication") %>% 
+  #     dplyr::summarise_all(.funs = "mean")
+  #   
+  #   # now I transpose the data.frame, so that columns are rows (just makes it easier to manipulate).
+  #   results_df <- as.data.frame(t(results_df))
+  #   names(results_df) <- "score"
+  #   
+  #   # now, we build the highchart
+  #   highchart() %>% 
+  #     hc_chart(type = "column") %>% 
+  #     hc_add_series(data = results_df$score, 
+  #                   name = "Average", 
+  #                   color = "#9C2625") %>% 
+  #     hc_add_series(data = real_results, 
+  #                   name = "This Mock", 
+  #                   color = "#c35f33") %>%
+  #     hc_xAxis(categories = as.character(row.names(results_df))) %>%
+  #     hc_exporting(enabled = TRUE)
+  # })
 
 })

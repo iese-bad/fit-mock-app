@@ -12,17 +12,16 @@ load(file = "www/credential.RData")
 
 send_fit_mail <- function(interviewer, 
                                  interviewee, 
-                                 data_vector){
+                                 data_vector, categories){
   interviewer <- interviewer
   interviewee <- interviewee
-  categories <- c("Time", "Interviewee", "Interviewer", 
-                  "Type of Interviewer", 
-                  "STAR", "Impact", "Storytelling", "Communication", 
-                  "Improve Structure", "Improve Situation", 
-                  "Improve Task", "Improve Actions", 
-                  "Improve Results", "Improve Learnings", 
-                  "Improve Energy and Enthusiasm", "Decrease Rambling", 
-                  "Other improvements")
+  # categories <- c("Time", "Interviewee", "Interviewer", 
+  #                 "Type of Interviewer", 
+  #                 "Straight to the Point", "Something New", "Energy","Tell Me About Yourself Input", "Vivid Example", 
+  #                 "Clear Conclusion", "S&W Input","STAR", 
+  #                 "Impact", "To the Point Storytelling", "CBI Input",
+  #                 "Posture", "Pause", 
+  #                 "Body Language", "Attitude and Presence input")
   
   print(length(categories))
   print(length(data_vector))
@@ -39,12 +38,12 @@ send_fit_mail <- function(interviewer,
                  )
   
   # lets send the email! 
-  mailR::send.mail(from = "fitmockiese@gmail.com",
+  mailR::send.mail(from = "consulting.iese@gmail.com",
             to = c(interviewee, interviewer), 
             subject = "Fit Results",
             body = paste0("<h2>Here are your results for your fit mock</h2></br>", HTML(d)),
             smtp = list(host.name = "smtp.gmail.com", port = 465, 
-                        user.name = "fitmockiese@gmail.com", 
+                        user.name = "consulting.iese@gmail.com", 
                         passwd = as.character(credential), ssl = TRUE),
             authenticate = TRUE,
             html = TRUE,

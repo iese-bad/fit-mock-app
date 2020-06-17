@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "consulting-send-app",
+  "private_key_id": "b4d8ece8370aba31855418484303b283e0182af1",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCkLLOIe8LUUIBr\njs9KwrjuwH1/rtc02RDMoZ/wwV5PC3KDJuWMwTWj2OWjA+BD/K8033qBPSLuOJ4J\nxzaXrt8kHNOknvZNLgRpOap/Cn4IGzR7jgVkY4xolJkopoSSm5dR1pAcK9Vl8hX7\nK6R58EVn/DgTe0hiSillFCGGC4AND4g9ikRWc40MfFKgPM91Q3pfyEEufVzbrRPU\nipt5lJVxb2/+4hhnb3HKZ4iXF425Z3GCyCXXOIOXcXfB3COdw+cDNuiBW4CTH8H8\nV62+4/WRaFqVmYhEysM7S8Fst031lfx2ELeXjrWAfJf5ELDVZpRT5m+bhEYWx5g+\nWrrGwYy1AgMBAAECggEANTHyvi9zsn2fDrrIOe4cI+glAeEyBAKtadCY1VaiazRH\nV22cBV55NezKg2Z3HTBbyOL8e7HGhq+7rWlqK/3SeY4JmZaUMe/OKBYyQ1Wv/opq\nF/qtjpie3yf+9Gf4HtThU/gU27vsOksVijva4FPU+VuFA/L3QjnLbd/2+MrzI8e2\nusQ7GegKHSECd0s9o6BqnGmkcoL8NHoBRvDDH4X4h+Nqk20myw3G12A481HPy/7u\nSy9pI5cmXUfwX4xlLuv5vA/XiGLhVLMzrj6bOJ80+bGm5lVre69SZWeOQSiQcxAU\nmSNXcWldAyq2V2ZsVxt8MlXcYvw4JwPZtgwoc4h/pQKBgQDQgphk1O2k+LbIW11p\npVb1cEuDjMAn2ThIWAfC8xkhwPzm/riWrYjyST+3ZtjIgAuczfzwdvv9SGAZsIEL\nlCYa4IdFR/s1mMBTPBCmn8DAcVyvDCmyQeKPFl+YIyCj1XNmvNlV4+QvzoDqY3d+\nJiS1JOVHD/ZuPrkQ22v+g5IcJwKBgQDJkROIp+4v3bmcJ+UEMyooEtGvm/u+ItjV\nvw6wi61TPMNHG1azTumS0NFmHc2USvaPhJZOBHpeyRc03jgKHyI4TC+7nzFHkkQ7\nDSoWvi510Qmyplq0bFwFQ2+MBqh/3PqsRt63zkA/TvZFYwEJJZKg3tvA2FEOq3y+\ngXiMdCrtwwKBgBC0BYU+UXM/wVS3jPojlp2+yy3UnqgSjKGu+6AwXTkI/rl6eksH\nx8qw93u3r3IQX93F2pdg0Lrvi1NDgnLtAUhx6CQyqfsXK4D/dM4ESiqgai5TqRtw\nj7eqsSm81qaJON9oDXkF8oep4UXlhfMDFzmzpPJWYwVd3PFuwm33GENNAoGBAJXq\nL/QYqj+xkkYBKgUYpMcPUCNjSTYeJtW69wr5p9zbuYWeYLqV+4T1iHiBvBAKPR17\nCGtYS0dKGtd4W4ezpjjm+S17diR8NgERhndJ1bZM1gCoV5gPa9WCVWl43kPTMCGH\nyEg+v2wWp3Xt76xE5Kx/dEQW3xqhEvOByg30rKUPAoGAHP7aCUKI7GMfPjRvJMHs\nT0Vl8N52WKa1ZB+73/apH/GIurlK8LXixZojlqc2WaYFHXJEBIOdHIQ2ep05D67v\nhAStqYecLS0fq8Xo44fC5uxrBoovgfdnvEvXmwB0B1ai8nhNAJdg/huHkHBctiDR\nfmkVv8yIimzXrQvaBfaioBo=\n-----END PRIVATE KEY-----\n",
+  "client_email": "proj-consulting@consulting-send-app.iam.gserviceaccount.com",
+  "client_id": "104962827309933263737",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://accounts.google.com/o/oauth2/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/proj-consulting%40consulting-send-app.iam.gserviceaccount.com"
+}
