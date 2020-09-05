@@ -195,6 +195,120 @@ fluidPage(
                       shiny::textInput(inputId = "WhyInput", label = "Other improvements"),
                       hr()
              )#tabPanel(Why)
+    tabsetPanel(
+             tabPanel("Technical",
+                      h3("Technical Questions"),
+                      
+                      h5(HTML("Finance technical questions")),
+                      hr(),
+                      
+                      h5(HTML("Accounting"))
+                      h4("Conceptual Understanding"),
+                      HTML("<strong>1 = Poor </strong>- Candidate displayed a weak understanding of underlying concepts and/or failed to apply them to questions asked. Weak arithmetic.</br> 
+                                <strong>5 = Outstanding </strong> - Candidate displayed robust understanding of underlying concepts and was able to apply them in an effective manner to answer questions. Strong arithmetic."),
+                      shiny::sliderInput(inputId = "Straight",
+                                         label = "",
+                                         min = 1,
+                                         max = 5,
+                                         value = 3),
+                      
+                      h4("Delivery"),
+                      HTML("<strong>1 = Poor</strong> - Vague, long, and unstructured delivery.</br> 
+                                <strong>5 = Outstanding </strong> - Succinct and crisp. Provided the right amount details. Well structured."),
+                      shiny::sliderInput(inputId = "New",
+                                         label = "",
+                                         min = 1,
+                                         max = 5,
+                                         value = 3),
+                      
+                      h5(HTML("Enterprise/Equity Value"))
+                      h4("Conceptual Understanding"),
+                      HTML("<strong>1 = Poor </strong>- Candidate displayed a weak understanding of underlying concepts and/or failed to apply them to questions asked. Weak arithmetic.</br> 
+                                <strong>5 = Outstanding </strong> - Candidate displayed robust understanding of underlying concepts and was able to apply them in an effective manner to answer questions. Strong arithmetic."),
+                      shiny::sliderInput(inputId = "Straight",
+                                         label = "",
+                                         min = 1,
+                                         max = 5,
+                                         value = 3),
+                      
+                      h4("Delivery"),
+                      HTML("<strong>1 = Poor</strong> - Vague, long, and unstructured delivery.</br> 
+                                <strong>5 = Outstanding </strong> - Succinct and crisp. Provided the right amount details. Well structured."),
+                      shiny::sliderInput(inputId = "New",
+                                         label = "",
+                                         min = 1,
+                                         max = 5,
+                                         value = 3),
+                      
+                      h5(HTML("Valuation Methods"))
+                      h4("Conceptual Understanding"),
+                      HTML("<strong>1 = Poor </strong>- Candidate displayed a weak understanding of underlying concepts and/or failed to apply them to questions asked. Weak arithmetic.</br> 
+                                <strong>5 = Outstanding </strong> - Candidate displayed robust understanding of underlying concepts and was able to apply them in an effective manner to answer questions. Strong arithmetic."),
+                      shiny::sliderInput(inputId = "Straight",
+                                         label = "",
+                                         min = 1,
+                                         max = 5,
+                                         value = 3),
+                      
+                      h4("Delivery"),
+                      HTML("<strong>1 = Poor</strong> - Vague, long, and unstructured delivery.</br> 
+                                <strong>5 = Outstanding </strong> - Succinct and crisp. Provided the right amount details. Well structured."),
+                      shiny::sliderInput(inputId = "New",
+                                         label = "",
+                                         min = 1,
+                                         max = 5,
+                                         value = 3),
+                      
+                      h5(HTML("M&A"))
+                      h4("Conceptual Understanding"),
+                      HTML("<strong>1 = Poor </strong>- Candidate displayed a weak understanding of underlying concepts and/or failed to apply them to questions asked. Weak arithmetic.</br> 
+                                <strong>5 = Outstanding </strong> - Candidate displayed robust understanding of underlying concepts and was able to apply them in an effective manner to answer questions. Strong arithmetic."),
+                      shiny::sliderInput(inputId = "Straight",
+                                         label = "",
+                                         min = 1,
+                                         max = 5,
+                                         value = 3),
+                      
+                      h4("Delivery"),
+                      HTML("<strong>1 = Poor</strong> - Vague, long, and unstructured delivery.</br> 
+                                <strong>5 = Outstanding </strong> - Succinct and crisp. Provided the right amount details. Well structured."),
+                      shiny::sliderInput(inputId = "New",
+                                         label = "",
+                                         min = 1,
+                                         max = 5,
+                                         value = 3),
+                      
+                      h5(HTML("LBOs"))
+                      h4("Conceptual Understanding"),
+                      HTML("<strong>1 = Poor </strong>- Candidate displayed a weak understanding of underlying concepts and/or failed to apply them to questions asked. Weak arithmetic.</br> 
+                                <strong>5 = Outstanding </strong> - Candidate displayed robust understanding of underlying concepts and was able to apply them in an effective manner to answer questions. Strong arithmetic."),
+                      shiny::sliderInput(inputId = "Straight",
+                                         label = "",
+                                         min = 1,
+                                         max = 5,
+                                         value = 3),
+                      
+                      h4("Delivery"),
+                      HTML("<strong>1 = Poor</strong> - Vague, long, and unstructured delivery.</br> 
+                                <strong>5 = Outstanding </strong> - Succinct and crisp. Provided the right amount details. Well structured."),
+                      shiny::sliderInput(inputId = "New",
+                                         label = "",
+                                         min = 1,
+                                         max = 5,
+                                         value = 3),
+                      
+                      h4("Energy"),
+                      HTML("<strong>1 = Poor</strong> - Story came across either as completely improvised (i.e. not prepared at all) or like a robotic word-for-word recitation (i.e. well prepared but not yet internalized).</br> 
+                                <strong>5 = Outstanding </strong> - Came to life while telling the story.  Story was delivered with conviction and from a place of strong grounding."),
+                      shiny::sliderInput(inputId = "Energy",
+                                         label = "",
+                                         min = 1,
+                                         max = 5,
+                                         value = 3),
+                      
+                      
+                      
+              ),#TabPanel (technical)
            )#TabsetPanel
     ),#columnMiddle
     column(4,
